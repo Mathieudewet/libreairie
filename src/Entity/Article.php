@@ -20,10 +20,10 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\ManyToMany(targetEntity: domaine::class, inversedBy: 'articles')]
+    #[ORM\ManyToMany(targetEntity: Domaine::class, inversedBy: 'articles')]
     private Collection $domaines;
 
-    #[ORM\ManyToMany(targetEntity: topic::class, inversedBy: 'articles')]
+    #[ORM\ManyToMany(targetEntity: Topic::class, inversedBy: 'articles')]
     private Collection $topics;
 
     #[ORM\Column]
