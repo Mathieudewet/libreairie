@@ -9,7 +9,6 @@ use App\Repository\DomaineRepository;
 
 class TopicFixtures extends Fixture
 {
-
     private DomaineRepository $domaineRepository;
 
     public function __construct(DomaineRepository $domaineRepository)
@@ -22,7 +21,7 @@ class TopicFixtures extends Fixture
         $topics = [
             [
                 'name' => 'Déménagement',
-                'domaines' => ['Carrière', 'Finance', 'Juridique'],
+                'domaines' => ['Carrière', 'Finance', 'Juridique', 'Logement'],
             ],
         ];
 
@@ -30,7 +29,7 @@ class TopicFixtures extends Fixture
         {
             $topic = new Topic();
             $topic->setName($infos['name']);
-            $topic->addDomaines($this->domaineRepository->findBy(['name' => ['Juridique', 'Carrière', 'Finance']]));
+            $topic->addDomaines($this->domaineRepository->findBy(['name' => [...$infos['domaines']]]));
             $manager->persist($topic);
         }
 

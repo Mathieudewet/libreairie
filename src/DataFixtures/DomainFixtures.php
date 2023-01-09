@@ -11,7 +11,7 @@ class DomainFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         // TODO: Enabling to fetch it from another source (e.g. config file, remote source), set the following as default.
-        $names = ['Santé','Carrière','Finance','Juridique']; 
+        $names = ['Santé','Carrière','Finance','Juridique', 'Logement']; 
 
         foreach($names as &$name)
         {
