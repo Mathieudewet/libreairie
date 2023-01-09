@@ -24,9 +24,13 @@ class Domaine
     #[ORM\ManyToMany(targetEntity: Topic::class, inversedBy: 'domaines')]
     private Collection $topics;
 
+    #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'domaines')]
+    private Collection $articles;
+
     public function __construct()
     {
         $this->topics = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -66,6 +70,33 @@ class Domaine
     public function removeTopic(Topic $topic): self
     {
         $this->topics->removeElement($topic);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
+            $article->addDomaine($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            $article->removeDomaine($this);
+        }
 
         return $this;
     }

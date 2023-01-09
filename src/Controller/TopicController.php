@@ -24,8 +24,6 @@ class TopicController extends AbstractController
         $entityManager = $doctrine->getManager();
 
         $topic = new Topic();
-        $topic->setName('Keyboard');
-
         // tell Doctrine you want to (eventually) save the Topic (no queries yet)
         $entityManager->persist($topic);
 
