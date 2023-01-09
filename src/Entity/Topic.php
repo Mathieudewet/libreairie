@@ -63,6 +63,19 @@ class Topic
         return $this;
     }
 
+    public function addDomaines(array $domaines): self
+    {
+        foreach($domaines as $domaine)
+        {
+            if (!$this->domaines->contains($domaine)) {
+                $this->domaines->add($domaine);
+                $domaine->addTopic($this);
+            }
+        }
+
+        return $this;
+    }
+
     public function removeDomaine(Domaine $domaine): self
     {
         if ($this->domaines->removeElement($domaine)) {
